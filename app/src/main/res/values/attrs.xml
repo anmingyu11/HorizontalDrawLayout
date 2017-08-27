@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TickMarkView">
+        <attr name="thumb" format="reference"/>
+        <attr name="bridge_src" format="reference"/>
+        <attr name="start_marker_src" format="reference"/>
+        <attr name="mid_marker_src" format="reference"/>
+        <attr name="end_marker_src" format="reference"/>
+        <attr name="marker_size" format="integer"/>
+        <attr name="marker" format="integer"/>
+        <attr name="labels" format="reference"/>
+    </declare-styleable>
+
+</resources>
