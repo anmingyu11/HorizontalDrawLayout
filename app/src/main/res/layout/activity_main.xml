@@ -1,17 +1,318 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
 
+    <RelativeLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimary"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="DeviceName"
+            android:textColor="#2bc72b"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            />
+
+        <ImageView
+            android:id="@+id/title_setting"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/icon_setting"
+            />
+
+        <ImageView
+            android:id="@+id/title_share"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/title_setting"
+            android:background="@drawable/icon_share"
+            />
+
+    </RelativeLayout>
+
     <com.amy.drawhorizontallayout.widget.RemoteControlView
         android:id="@+id/marker"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="40dp"
+        android:paddingLeft="6dp"
+        android:paddingRight="6dp"
         />
 
-</LinearLayout>
+    <ScrollView
+        android:id="@+id/scrollContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/marker"
+        android:layout_below="@id/title"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <FrameLayout
+                android:id="@+id/device_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="18dp"
+                android:layout_marginTop="8dp"
+                android:minHeight="360dp"
+                >
+
+                <FrameLayout
+                    android:id="@+id/device_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|center_horizontal"
+                    android:layout_marginTop="76dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top|center_horizontal"
+                        android:minHeight="150dp"
+                        android:text="35"
+                        android:textColor="#2bc72b"
+                        android:textSize="36sp"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center_horizontal"
+                        android:text="室内 PM 2.5"
+                        android:textColor="#26000000"
+                        android:textSize="12sp"
+                        />
+                </FrameLayout>
+
+                <RelativeLayout
+                    android:id="@+id/pm2.5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|top"
+                    >
+
+                    <TextView
+                        android:id="@+id/pm2.5_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_gravity="right|top"
+                        android:text="340"
+                        android:textColor="#26000000"
+                        android:textSize="36sp"
+                        />
+
+                    <TextView
+                        android:id="@+id/pm2.5hint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@id/pm2.5_value"
+                        android:layout_below="@id/pm2.5_value"
+                        android:layout_marginTop="4dp"
+                        android:text="室外 PM 2.5"
+                        android:textColor="#26000000"
+                        android:textSize="12sp"
+                        />
+
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/aqiHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:text="关紧门窗，预计20分钟后，空气质量达到优秀"
+                    android:textColor="#4c000000"
+                    android:textSize="10sp"
+                    />
+
+            </FrameLayout>
+
+            <!-- line chart -->
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/lineChart"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_below="@id/device_detail"
+                />
+
+            <LinearLayout
+                android:id="@+id/filter_work_result_root"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lineChart"
+                android:orientation="horizontal"
+                >
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:minHeight="127dp"
+                    >
+
+                    <com.amy.drawhorizontallayout.widget.TripleTextView
+                        android:id="@+id/hour"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top|left"
+                        android:layout_marginLeft="18dp"
+                        android:layout_marginTop="28dp"
+                        app:tripleTextView_bottomText="小时"
+                        app:tripleTextView_centerText="233"
+                        app:tripleTextView_topText="累计净化空气"
+                        />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:minHeight="127dp"
+                    >
+
+                    <com.amy.drawhorizontallayout.widget.TripleTextView
+                        android:id="@+id/metre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top|left"
+                        android:layout_marginLeft="18dp"
+                        android:layout_marginTop="28dp"
+                        app:tripleTextView_bottomText="立方米"
+                        app:tripleTextView_centerText="3840"
+                        app:tripleTextView_topText="累计净化空气"
+                        />
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/filter_element_top_root"
+                android:layout_width="match_parent"
+                android:layout_height="128dp"
+                android:layout_below="@id/filter_work_result_root"
+                android:layout_marginTop="22dp"
+                >
+
+
+                <com.amy.drawhorizontallayout.widget.DoubleTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="18dp"
+                    app:doubleTextView_bottomText="滤芯使用情况"
+                    app:doubleTextView_bottomTextColor="#26000000"
+                    app:doubleTextView_topText="10%"
+                    app:doubleTextView_topTextColor="#d9213f"
+                    />
+
+                <ImageView
+                    android:id="@+id/filter_element_top_img"
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:background="@color/colorPrimaryDark"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/filter_element_bottom_root"
+                android:layout_width="match_parent"
+                android:layout_height="224dp"
+                android:layout_below="@id/filter_element_top_root"
+                android:layout_marginTop="9dp"
+                >
+
+                <com.amy.drawhorizontallayout.widget.DoubleTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="18dp"
+                    app:doubleTextView_bottomText="滤芯使用情况"
+                    app:doubleTextView_bottomTextColor="#26000000"
+                    app:doubleTextView_topText="10%"
+                    app:doubleTextView_topTextColor="#2bc72b"
+                    />
+
+                <ImageView
+                    android:id="@+id/filter_element_bottom_img"
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:background="@color/colorPrimaryDark"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/filter_element_function_root"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/filter_element_bottom_root"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="36dp"
+                >
+
+                <TextView
+                    android:id="@+id/left_button"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="12dp"
+                    android:background="@drawable/btn_grey"
+                    android:gravity="center"
+                    android:text="tutorial"
+                    android:textColor="#9a000000"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/right_button"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/left_button"
+                    android:background="@drawable/btn_green"
+                    android:gravity="center"
+                    android:text="替换滤芯"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    />
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

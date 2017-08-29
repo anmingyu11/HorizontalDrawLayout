@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#ffffaa</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
     <color name="TickMarkerTextColorUnSelected">#66000000</color>
-    <color name="TickMarkerTextColorSelected">#bdbdbd</color>
+    <color name="TickMarkerTextColorSelected">#2bc72b</color>
+    <color name="filter_green">#2bc72b</color>
+
+    <color name="xAxis_label_color">#33000000</color>
+    <color name="xAxis_line_color">#14000000</color>
+
+    <color name="line_color_grey">#cacaca</color>
+    <color name="line_color_green">#2bc72b</color>
 </resources>

@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <declare-styleable name="DoubleTextView">
+        <attr name="doubleTextView_topText" format="string"/>
+        <attr name="doubleTextView_bottomText" format="string"/>
+        <attr name="doubleTextView_topTextColor" format="color"/>
+        <attr name="doubleTextView_bottomTextColor" format="color"/>
+        <attr name="doubleTextView_topTextSize" format="dimension"/>
+        <attr name="doubleTextView_bottomTextSize" format="dimension"/>
+    </declare-styleable>
+
     <declare-styleable name="TickMarkView">
         <attr name="thumb" format="reference"/>
         <attr name="bridge_src" format="reference"/>
@@ -10,6 +19,20 @@
         <attr name="marker_size" format="integer"/>
         <attr name="marker" format="integer"/>
         <attr name="labels" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="TripleTextView">
+        <attr name="tripleTextView_topText" format="string"/>
+        <attr name="tripleTextView_centerText" format="string"/>
+        <attr name="tripleTextView_bottomText" format="string"/>
+        <attr name="tripleTextView_alignMode">
+            <flag name="left" value="1"/>
+            <flag name="right" value="4"/>
+            <flag name="top" value="5"/>
+            <flag name="bottom" value="6"/>
+            <flag name="center_horizontal" value="2"/>
+            <flag name="center_vertical" value="3"/>
+        </attr>
     </declare-styleable>
 
 </resources>

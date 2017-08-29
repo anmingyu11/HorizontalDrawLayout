@@ -1,3 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <dimen name="doubleTextView_default_top_textSize">24sp</dimen>
+    <dimen name="doubleTextView_default_bottom_textSize">10sp</dimen>
+
 </resources>
