@@ -76,9 +76,9 @@ public class TickMarkView extends View {
     private Paint.FontMetrics mLabelFontMetrics;
 
     private int mScaledTouchSlop;
-    private float mTouchDownX;
     private boolean mIsDragging;
     private int mCurrentMarker;
+    private float mTouchDownX;
     private int mFocusedMarker;
 
     private OnMarkerChangeListener mMarkerChangeListener;
@@ -102,13 +102,13 @@ public class TickMarkView extends View {
         mResources = mContext.getResources();
 
         initStaticConstants();
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TickMarkView, defStyleAttr, 0);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.HorizontalTickMarkView, defStyleAttr, 0);
         try {
-            mMarkerSize = a.getInt(R.styleable.TickMarkView_marker_size, DEF_MARKER_SIZE);
+            mMarkerSize = a.getInt(R.styleable.HorizontalTickMarkView_marker_size, DEF_MARKER_SIZE);
             verifyMarkerSize(mMarkerSize);
             initMarkers();
-            mCurrentMarker = a.getInt(R.styleable.TickMarkView_marker, 0);
-            int labelsArrayId = a.getResourceId(R.styleable.TickMarkView_labels, 0);
+            mCurrentMarker = a.getInt(R.styleable.HorizontalTickMarkView_marker, 0);
+            int labelsArrayId = a.getResourceId(R.styleable.HorizontalTickMarkView_labels, 0);
             if (labelsArrayId > 0) {
                 String[] labels = getResources().getStringArray(labelsArrayId);
                 if (labels.length != mMarkerSize) {
@@ -117,15 +117,15 @@ public class TickMarkView extends View {
                 setMarkerLabels(labels);
             }
             mStartMarkerDrawable = getResources().getDrawable(
-                    a.getResourceId(R.styleable.TickMarkView_start_marker_src, R.drawable.tick_mark_track_start));
+                    a.getResourceId(R.styleable.HorizontalTickMarkView_start_marker_src, R.drawable.tick_mark_track_start));
             mEndMarkerDrawable = getResources().getDrawable(
-                    a.getResourceId(R.styleable.TickMarkView_end_marker_src, R.drawable.tick_mark_track_end));
+                    a.getResourceId(R.styleable.HorizontalTickMarkView_end_marker_src, R.drawable.tick_mark_track_end));
             mMidMarkerDrawable = getResources().getDrawable(
-                    a.getResourceId(R.styleable.TickMarkView_mid_marker_src, R.drawable.tick_mark_track_mid));
+                    a.getResourceId(R.styleable.HorizontalTickMarkView_mid_marker_src, R.drawable.tick_mark_track_mid));
             mBridgeDrawable = getResources().getDrawable(
-                    a.getResourceId(R.styleable.TickMarkView_bridge_src, R.drawable.thin_tick_mark_track_bridge));
+                    a.getResourceId(R.styleable.HorizontalTickMarkView_bridge_src, R.drawable.thin_tick_mark_track_bridge));
             mThumb = getResources().getDrawable(
-                    a.getResourceId(R.styleable.TickMarkView_thumb, R.drawable.tick_mark_progress_control));
+                    a.getResourceId(R.styleable.HorizontalTickMarkView_thumb, R.drawable.tick_mark_progress_control));
 
             initLabelPaintParams();
 
@@ -141,11 +141,6 @@ public class TickMarkView extends View {
         getThumbSize();
     }
 
-    public void setMarkerDrawableEdgeLength(int width, int height) {
-        mMarkerDrawableWidth = width;
-        mMarkerDrawableHeight = height;
-    }
-
     private void initStaticConstants() {
         DEFAULT_HEIGHT = dp2px(getContext(), 66);
         LABEL_TOP_MARGIN = dp2px(getContext(), 6);
@@ -153,6 +148,11 @@ public class TickMarkView extends View {
         LABEL_INNER_TRANSABLE_Y = dp2px(getContext(), 8);
         LABEL_TRANS_Y_MIN = 0;
         LABEL_TRANS_Y_MAX = LABEL_TRANS_Y_MIN + LABEL_INNER_TRANSABLE_Y;
+    }
+
+    public void setMarkerDrawableEdgeLength(int width, int height) {
+        mMarkerDrawableWidth = width;
+        mMarkerDrawableHeight = height;
     }
 
     private void getThumbSize() {
@@ -584,8 +584,11 @@ public class TickMarkView extends View {
                 targetDrawable = mMidMarkerDrawable;
             }
 
-            targetDrawable.setBounds(marker.centerX - mMarkerDrawableWidth / 2, topStart,
-                    marker.centerX + mMarkerDrawableWidth / 2, mMarkerDrawableHeight + topStart);
+            targetDrawable.setBounds(
+                    marker.centerX - mMarkerDrawableWidth / 2,
+                    topStart,
+                    marker.centerX + mMarkerDrawableWidth / 2,
+                    mMarkerDrawableHeight + topStart);
             targetDrawable.draw(canvas);
             if (drawBridge) {
                 int bridgeHeight = mBridgeDrawable.getIntrinsicHeight();

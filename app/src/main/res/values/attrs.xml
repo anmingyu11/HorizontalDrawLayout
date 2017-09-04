@@ -10,7 +10,20 @@
         <attr name="doubleTextView_bottomTextSize" format="dimension"/>
     </declare-styleable>
 
-    <declare-styleable name="TickMarkView">
+    <declare-styleable name="VerticalTickMarkView">
+
+        <attr name="vertical_thumb" format="reference"/>
+        <attr name="vertical_bridge_src" format="reference"/>
+        <attr name="vertical_start_marker_src" format="reference"/>
+        <attr name="vertical_mid_marker_src" format="reference"/>
+        <attr name="vertical_end_marker_src" format="reference"/>
+        <attr name="vertical_marker_size" format="integer"/>
+        <attr name="vertical_current_marker" format="integer"/>
+        <attr name="vertical_labels" format="reference"/>
+
+    </declare-styleable>
+
+    <declare-styleable name="HorizontalTickMarkView">
         <attr name="thumb" format="reference"/>
         <attr name="bridge_src" format="reference"/>
         <attr name="start_marker_src" format="reference"/>
